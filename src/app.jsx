@@ -1,23 +1,23 @@
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
-import Header from './components.jsx';
-import { Home, Transactions, TransactionDetail, Accounts, AccountDetail, AddTransaction, Profile } from './pages.jsx';
-import BottomNav from './components.jsx';
+import { Routes, Route, Navigate } from 'react-router-dom';
+import Layout from './components/Layout.jsx';
+import Dashboard from './components/Dashboard.jsx';
+import Transactions from './components/Transactions.jsx';
+import Accounts from './components/Accounts.jsx';
+import Categories from './components/Categories.jsx';
+import Reports from './components/Reports.jsx';
 
-export default function App(){
+export default function App() {
   return (
-    <div className="app-shell">
-      <Header title="SaldoGo" />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/transactions" element={<Transactions />} />
-        <Route path="/transactions/:id" element={<TransactionDetail />} />
-        <Route path="/accounts" element={<Accounts />} />
-        <Route path="/accounts/:id" element={<AccountDetail />} />
-        <Route path="/add" element={<AddTransaction />} />
-        <Route path="/profile" element={<Profile />} />
-      </Routes>
-      <BottomNav />
-    </div>
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<Navigate to="/dashboard" replace />} />
+        <Route path="dashboard" element={<Dashboard />} />
+        <Route path="transactions" element={<Transactions />} />
+        <Route path="accounts" element={<Accounts />} />
+        <Route path="categories" element={<Categories />} />
+        <Route path="reports" element={<Reports />} />
+      </Route>
+    </Routes>
   );
 }
